@@ -10,11 +10,11 @@ function App() {
   return (
     <div className="App">
   <Menu />
-<div class="container mt-5">
+<div class="container mt-4">
   <div class="row">
     <div class="col-12">
     <Routes>
-        <Route path='/employee-reports' element={<Employee/>}></Route>
+        <Route path='/employee-reports/:id' element={<Employee/>}></Route>
       </Routes>
     </div>
     <div class="col-12">

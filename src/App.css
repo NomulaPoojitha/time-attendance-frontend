@@ -47,3 +47,14 @@
   text-decoration: none;
   font-size: 20px;
 }
+
+
+
+
+/* employee css */
+
+
+.custom-table-container {
+  height: 300px; /* Set your desired height */
+  overflow-y: auto; /* Add a vertical scrollbar if needed */
+}
