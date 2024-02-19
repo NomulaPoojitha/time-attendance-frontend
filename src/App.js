@@ -9,29 +9,27 @@ import {Route , Routes} from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-      <div class="container-fluid p-5 bg-primary text-white text-center">
-  <h1>My First Bootstrap Page</h1>
-  <p>Resize this responsive page to see the effect!</p> 
-</div>
   <Menu />
 <div class="container mt-5">
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-12">
     <Routes>
         <Route path='/employee-reports' element={<Employee/>}></Route>
-       
       </Routes>
     </div>
-    <div class="col-sm-4">
+    <div class="col-12">
       <Routes>
-        <Route path='/signup' element={<Signup/>}></Route>
         <Route path='/login' element={<Login />}></Route>
       </Routes>
     </div>
-    <div class="col-sm-4">
+    <div class="col-12">
+      <Routes>
+        <Route path='/signup' element={<Signup/>}></Route>
+      </Routes>
+    </div>
+    <div class="col-12">
     <Routes>
         <Route path='/hr-reports' element={<HrPage />}></Route>
-       
       </Routes>
     </div>
   </div>
