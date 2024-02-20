@@ -58,3 +58,11 @@
   height: 300px; /* Set your desired height */
   overflow-y: auto; /* Add a vertical scrollbar if needed */
 }
+
+.lc-block1 td {
+  text-align: left;
+}
+
+.lc-block1 th {
+  text-align: left;
+}

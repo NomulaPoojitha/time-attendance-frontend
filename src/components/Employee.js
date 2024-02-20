@@ -2,11 +2,10 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 
 export default function Employee() {
-
-  const {id} = useParams();
+  const { id } = useParams()
 
   //total attendance for month
-  //total overtime 
+  //total overtime
   //total late arrival
   //payroll with late arrival and overtime
   //hr departments and details
@@ -42,37 +41,71 @@ export default function Employee() {
 
       {/* employee name , employee departments , employee email id , phone number , employee designation, */}
 
-<div class="row row-cols-1 row-cols-lg-2 g-0 overflow-hidden">
-        <div class="col">
-            <div class="lc-block">
-              <h2>Employee Details Table</h2>
-            </div>
-            <div class="lc-block">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Employee Name</th>
-                    <th scope="col">Employee Departments</th>
-                    <th scope="col">Employee Email ID</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Employee Designation</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Mark</td>
-                    <td>HR1, HR2, HR3</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+      <div class='row g-0 overflow-hidden'>
+        <div class='col-md-6'>
+          <div class='lc-block my-5'>
+            <h4>Employee Details Table {id}</h4>
+          </div>
+          <div class='lc-block1'>
+            <table class='table table-striped'>
+              <tbody>
+                <tr>
+                  <th>Row</th>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th>First Name</th>
+                  <td>John</td>
+                </tr>
+                <tr>
+                  <th>Last Name</th>
+                  <td>Carter</td>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <td>johncarter@mail.com</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="col row row-cols-1 g-0">
-            <div class="col lc-block">test1</div>
-            <div class="col lc-block">test2</div>
+        <div class='col-md-6 row row-cols-1'>
+          <div class='col lc-block'>
+            <div className='my-5'>
+              <h4>Employee Attendance</h4>
+            </div>
+            <div class='accordion' id='accordionExample'>
+              <div class='accordion-item'>
+                <h2 class='accordion-header' id='headingOne'>
+                  <button
+                    class='accordion-button'
+                    type='button'
+                    data-bs-toggle='collapse'
+                    data-bs-target='#collapseOne'
+                    aria-expanded='true'
+                    aria-controls='collapseOne'
+                  >
+                    Accordion Item #1
+                  </button>
+                </h2>
+                <div
+                  id='collapseOne'
+                  class='accordion-collapse collapse show'
+                  aria-labelledby='headingOne'
+                  data-bs-parent='#accordionExample'
+                >
+                  <div class='accordion-body'>
+                    This is the first item's accordion body.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='col lc-block py-5'>
+            <h4>Employee Payroll {id}</h4>
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-
   )
 }
