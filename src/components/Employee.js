@@ -1,70 +1,72 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 export default function Employee() {
   const { id } = useParams()
+  const [employee, setEmployee] = useState(null);
 
-  //total attendance for month
-  //total overtime
-  //total late arrival
-  //payroll with late arrival and overtime
-  //hr departments and details
+  useEffect(() => {
+    async function fetchEmployee(id) {
+      try {
+        const response = await axios.get(`http://localhost:5001/employees/${id}`);
+        setEmployee(response.data);
+        console.log(response.data)
+      } catch (error) {
+        console.error('Error fetching employee data:', error);
+      }
+    }
+    fetchEmployee(id);
+  }, []);
+
+
+  if (employee === null) {
+    return <div>No User Found</div>;
+  }
 
   return (
+    
     //use bootstrap to create a card with the above details
     <div>
-      {/* <div className='container'>
-        <div className='row'>
-          <div className='col-12'>
-            <h1>Employee Reports</h1>
-          </div>
-          <div className='col-12'>
-            <h3>Employee ID : {id}</h3>
-          </div>
-          <div className='col-12'>
-            <h3>Total Attendance for the month : 30</h3>
-          </div>
-          <div className='col-12'>
-            <h3>Total Overtime : 10 hours</h3>
-          </div>
-          <div className='col-12'>
-            <h3>Total Late Arrival : 5 hours</h3>
-          </div>
-          <div className='col-12'>
-            <h3>Payroll with late arrival and overtime : 10000</h3>
-          </div>
-          <div className='col-12'>
-            <h3>HR Departments and details : HR1, HR2, HR3</h3>
-          </div>
-        </div>
-      </div> */}
-
-      {/* employee name , employee departments , employee email id , phone number , employee designation, */}
-
       <div class='row g-0 overflow-hidden'>
         <div class='col-md-6'>
           <div class='lc-block my-5'>
-            <h4>Employee Details Table {id}</h4>
+            <h4 >Employee Details for <span className = "mark">{employee.name}</span></h4>
           </div>
           <div class='lc-block1'>
-            <table class='table table-striped'>
+            <table class='table table-striped' align='center'>
               <tbody>
                 <tr>
-                  <th>Row</th>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <th>First Name</th>
-                  <td>John</td>
-                </tr>
-                <tr>
-                  <th>Last Name</th>
-                  <td>Carter</td>
+                  <th>Name</th>
+                  <td>{employee.name}</td>
                 </tr>
                 <tr>
                   <th>Email</th>
-                  <td>johncarter@mail.com</td>
+                  <td>{employee.email}</td>
                 </tr>
+                <tr>
+                  <th>Phone Number</th>
+                  <td>{employee.phone}</td>
+                </tr>
+                <tr>
+                  <th>Job Title</th>
+                  <td>{employee.jobTitle}</td>
+                </tr>
+                <tr>
+                  <th>Department</th>
+                  <td>{employee.department}</td>
+                </tr>
+                
+                <tr>
+                  <th>Shift Start Time</th>
+                  {/* <td>{ employee.timeShift && employee.timeShift.shiftIn}</td> */}
+                  <td>{ employee.timeShift ? employee.timeShift.shiftIn : "Not Assigned" }</td>
+                </tr>
+                <tr>
+                  <th>Shift End Time</th>
+                  <td>{ employee.timeShift ? employee.timeShift.shiftOut : "Not Assigned" }</td>
+                </tr>
+                
               </tbody>
             </table>
           </div>
@@ -74,6 +76,7 @@ export default function Employee() {
             <div className='my-5'>
               <h4>Employee Attendance</h4>
             </div>
+            {/* accordion */}
             <div class='accordion' id='accordionExample'>
               <div class='accordion-item'>
                 <h2 class='accordion-header' id='headingOne'>
@@ -85,7 +88,7 @@ export default function Employee() {
                     aria-expanded='true'
                     aria-controls='collapseOne'
                   >
-                    Accordion Item #1
+                    Month - January
                   </button>
                 </h2>
                 <div
@@ -94,14 +97,20 @@ export default function Employee() {
                   aria-labelledby='headingOne'
                   data-bs-parent='#accordionExample'
                 >
-                  <div class='accordion-body'>
+                  {/* <div class='accordion-body'>
                     This is the first item's accordion body.
-                  </div>
+                  </div> */}
+
+                  <div className='p-3'>Total Present =</div>
+                  <div className='p-3'>Late Arrivals =</div>
+                  <div className='p-3'>Total Overtime =</div>
+                  <div className='p-3'>Total Working Days =</div>
                 </div>
               </div>
             </div>
+            {/* accordion end */}
           </div>
-          <div class='col lc-block py-5'>
+          <div class='col lc-block my-5'>
             <h4>Employee Payroll {id}</h4>
           </div>
         </div>

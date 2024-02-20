@@ -66,3 +66,7 @@
 .lc-block1 th {
   text-align: left;
 }
+
+.lc-block1 tr {
+  height: 70px;
+}
