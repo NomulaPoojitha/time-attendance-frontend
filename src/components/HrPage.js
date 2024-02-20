@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+
 
 const HrPage = () => {
   const HR_DATA = [
@@ -11,7 +11,7 @@ const HrPage = () => {
       jobTitle: 'Software Engineer',
       department: 'Engineering',
       salary: 80000, shift: 'Day',
-      details: <a class="btn btn-info btn-sm" href="#" role="button">Select</a>,
+      details:"http://localhost:3000/employee-reports/1",
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ const HrPage = () => {
       department: 'Management',
       salary: 90000,
       shift: 'Evening',
-      details: <a class="btn btn-info btn-sm" href="#" role="button">Select</a>,
+      details: "http://localhost:3000/employee-reports/1",
     },
     {
       id: 3,
@@ -32,78 +32,80 @@ const HrPage = () => {
       jobTitle: 'QA Engineer',
       department: 'Quality Assurance',
       salary: 70000, shift: 'Night',
-      details: <a class="btn btn-info btn-sm" href="#" role="button">Select</a>,
+      details: "http://localhost:3000/employee-reports/1",
     },
   ];
 
-  const Table = styled.table`
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-  `;
+  // const Table = styled.table`
+  //   width: 100%;
+  //   border-collapse: collapse;
+  //   font-family: Arial, sans-serif;
+  // `;
 
-  const Th = styled.th`
-    background-color: #f2f2f2;
-    color: #333;
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  `;
+  // const Th = styled.th`
+  //   background-color: #f2f2f2;
+  //   color: #333;
+  //   padding: 10px;
+  //   text-align: left;
+  //   border-bottom: 1px solid #ddd;
+  // `;
 
-  const Td = styled.td`
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  `;
+  // const Td = styled.td`
+  //   padding: 10px;
+  //   text-align: left;
+  //   border-bottom: 1px solid #ddd;
+  // `;
 
-  const Button = styled.button`
-    background-color: #007bff;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    &:hover {
-      background-color: #0056b3;
-    }
-  `;
+  // const Button = styled.button`
+  //   background-color: #007bff;
+  //   color: white;
+  //   padding: 5px 10px;
+  //   border: none;
+  //   border-radius: 4px;
+  //   cursor: pointer;
+  //   &:hover {
+  //     background-color: #0056b3;
+  //   }
+  // `;
 
   return (
-    <div>
+    <div class = "hr-page">
       <h2 className="my-4">HR Page</h2>
-      <Table>
+      <table>
         <thead>
           <tr>
-            <Th>ID</Th>
-            <Th>Name</Th>
-            <Th>Email</Th>
-            <Th>Phone</Th>
-            <Th>Job Title</Th>
-            <Th>Department</Th>
-            <Th>Salary</Th>
-            <Th>Shift</Th>
-            <Th>Details</Th>
-            <Th></Th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Job Title</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Shift</th>
+            <th>Details</th>
           </tr>
         </thead>
         <tbody>
           {HR_DATA.map((hr) => (
             <tr>
-              <Td>{hr.id}</Td>
-              <Td>{hr.name}</Td>
-              <Td>{hr.email}</Td>
-              <Td>{hr.phone}</Td>
-              <Td>{hr.jobTitle}</Td>
-              <Td>{hr.department}</Td>
-              <Td>{hr.salary}</Td>
-              <Td>{hr.shift}</Td>
-              <Td>
-                <Button>Select</Button>
-              </Td>
+              <td>{hr.id}</td>
+              <td>{hr.name}</td>
+              <td>{hr.email}</td>
+              <td>{hr.phone}</td>
+              <td>{hr.jobTitle}</td>
+              <td>{hr.department}</td>
+              <td>{hr.salary}</td>
+              <td>{hr.shift}</td>
+              <td>
+                <a href={hr.details}>
+                <button>Select</button>
+                </a>
+                
+              </td>
             </tr>
           ))}
         </tbody>
-      </Table>
+      </table>
     </div>
   );
 };
