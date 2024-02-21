@@ -1,7 +1,25 @@
-import React from 'react';
-
-
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 const HrPage = () => {
+
+  const [employeesList, setEmployeesList] = useState([])
+
+
+
+  useEffect(() => {
+    async function fetchEmployeesList() {
+      try {
+        const response = await axios.get(`http://localhost:5001/employees`);
+        setEmployeesList(response.data);
+        console.log(response.data)
+      } catch (error) {
+        setEmployeesList(HR_DATA)
+        console.error('Error fetching employee data:', error);
+      }
+    }
+    fetchEmployeesList();
+  }, [])
+  
   const HR_DATA = [
     {
       id: 1,
@@ -36,41 +54,10 @@ const HrPage = () => {
     },
   ];
 
-  // const Table = styled.table`
-  //   width: 100%;
-  //   border-collapse: collapse;
-  //   font-family: Arial, sans-serif;
-  // `;
-
-  // const Th = styled.th`
-  //   background-color: #f2f2f2;
-  //   color: #333;
-  //   padding: 10px;
-  //   text-align: left;
-  //   border-bottom: 1px solid #ddd;
-  // `;
-
-  // const Td = styled.td`
-  //   padding: 10px;
-  //   text-align: left;
-  //   border-bottom: 1px solid #ddd;
-  // `;
-
-  // const Button = styled.button`
-  //   background-color: #007bff;
-  //   color: white;
-  //   padding: 5px 10px;
-  //   border: none;
-  //   border-radius: 4px;
-  //   cursor: pointer;
-  //   &:hover {
-  //     background-color: #0056b3;
-  //   }
-  // `;
 
   return (
     <div class = "hr-page">
-      <h2 className="my-4">HR Page</h2>
+      <h2 className="my-4">HR Dashboard</h2>
       <table>
         <thead>
           <tr>
@@ -80,24 +67,22 @@ const HrPage = () => {
             <th>Phone</th>
             <th>Job Title</th>
             <th>Department</th>
-            <th>Salary</th>
             <th>Shift</th>
             <th>Details</th>
           </tr>
         </thead>
         <tbody>
-          {HR_DATA.map((hr) => (
+          {employeesList.map((employee) => (
             <tr>
-              <td>{hr.id}</td>
-              <td>{hr.name}</td>
-              <td>{hr.email}</td>
-              <td>{hr.phone}</td>
-              <td>{hr.jobTitle}</td>
-              <td>{hr.department}</td>
-              <td>{hr.salary}</td>
-              <td>{hr.shift}</td>
+              <td>{employee.id}</td>
+              <td>{employee.name}</td>
+              <td>{employee.email}</td>
+              <td>{employee.phone}</td>
+              <td>{employee.jobTitle}</td>
+              <td>{employee.department}</td>
+              <td>{employee.shiftTime ? employee.shift : "Not Assigned"}</td>
               <td>
-                <a href={hr.details}>
+                <a href= {"/employee-reports/"+employee.id}>
                 <button>Select</button>
                 </a>
                 
